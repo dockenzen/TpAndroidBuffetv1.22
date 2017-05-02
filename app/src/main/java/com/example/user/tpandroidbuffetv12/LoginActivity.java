@@ -11,12 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.user.tpandroidbuffetv12.models.LoginModel;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button loguear;
     private Button registrar;
-    EditText email;
-    EditText pass;
+    private EditText email;
+    private EditText pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String passw = pass.getText().toString();
         if(pass.getText().toString().isEmpty()){
             pass.setError("El campo clave no puede estar vacio");
         }
