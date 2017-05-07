@@ -1,4 +1,4 @@
-package com.example.user.tpandroidbuffetv12.models;
+package com.example.user.tpandroidbuffetv12.model;
 
 /**
  * Created by USER on 1/5/2017.
