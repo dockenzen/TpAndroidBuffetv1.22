@@ -22,7 +22,7 @@
 
 
         <TextView
-            android:id="@+id/txtNombreProducto"
+            android:id="@+id/txtNombreProductoPedido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -30,7 +30,7 @@
              />
 
         <TextView
-            android:id="@+id/txtPrecioProducto"
+            android:id="@+id/txtPrecioProductoPedido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
         android:orientation="vertical">1
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addProd"
+            android:id="@+id/deleteProd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center|bottom"
@@ -55,7 +55,7 @@
 
             app:fabSize="auto"
             android:backgroundTint="#FF7514"
-            android:src="@drawable/add" />
+            android:src="@drawable/delete" />
 
     </LinearLayout>
 </LinearLayout>

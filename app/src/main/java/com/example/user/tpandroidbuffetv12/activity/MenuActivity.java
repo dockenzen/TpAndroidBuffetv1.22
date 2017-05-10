@@ -60,29 +60,30 @@ public class MenuActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         Log.d("Click", "Opcion del menu "+ item.getItemId() );
         Intent intento;
         switch (item.getItemId()){
-            case 2131558585:
+            case 2131558587:
                 mc.cambiarProductos(Producto.getStaticListBebidas());
                 Log.d("Click", "Opcion del menu "+ item.getTitle() );
                 break;
-            case 2131558586:
+            case 2131558588:
                 mc.cambiarProductos(Producto.getStaticListMenus());
                 Log.d("Click", "Opcion del menu "+ item.getTitle() );
                 break;
-            case 2131558587:
+            case 2131558589:
                 mc.cambiarProductos(Producto.getStaticListSnacks());
                 Log.d("Click", "Opcion del menu "+ item.getTitle() );
                 break;
-            case 2131558588:
+            case 2131558590:
                 Log.d("Ver Pedido", "Opcion del menu "+ item.getTitle() );
                 //intento = new Intent(getApplicationContext(),PedidoActivity.class);
                 //startActivity(intento);
                 //pasarle la data del pedido
 
                 break;
-            case 2131558589:
+            case 2131558591:
                 SharedPreferences share = getSharedPreferences("miConfig",MODE_PRIVATE);
                 String[] array = LoginActivity.getData();
                 share.edit().putString(array[0],"");
@@ -90,7 +91,7 @@ public class MenuActivity extends AppCompatActivity{
                 share.edit().putBoolean(array[2],false);
                 share.edit().apply();
 
-                finish();
+               finish();
                 //intento = new Intent(getApplicationContext(),LoginActivity.class);
                 //startActivity(intento);
                 break;

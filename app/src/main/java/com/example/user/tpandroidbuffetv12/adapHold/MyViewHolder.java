@@ -1,5 +1,6 @@
 package com.example.user.tpandroidbuffetv12.adapHold;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
+import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
 /**
@@ -40,7 +42,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         this.cantidadElementos = (EditText) this.acc.findViewById(R.id.txtCantidadElementos);
         this.boton = (FloatingActionButton) this.v.findViewById(R.id.addProd);
         this.enviarPedido = (Button) this.acc.findViewById(R.id.enviarPedidoBtn);
-        //this.imagen.setImageResource(R.drawable.pizza);
         this.boton.setOnClickListener(this);
         this.enviarPedido.setOnClickListener(this);
 
@@ -71,8 +72,11 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         }
         if(v.getId() == this.enviarPedido.getId())
         {
+
             Log.d("Estoy","aqie");
-            //Intent intento = new Intent(a mi pedido final)
+            Intent intento = new Intent(this.acc.getApplicationContext(), PedidoActivity.class);
+            this.acc.startActivity(intento);
+
         }
     }
 
