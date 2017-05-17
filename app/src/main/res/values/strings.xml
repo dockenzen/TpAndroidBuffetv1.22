@@ -1,5 +1,56 @@
 <resources>
     <string name="app_name">TpAndroidBuffet v1.2</string>
+    <string name="login_bienvenida">Bienvenido a la primer aplicacion</string>
+    <string name="login_title">Esta es la pantalla de ingreso</string>
+    <string name="login_subtitle">Por favor ingrese datos verdaderos</string>
+    <string name="login_mail">Correo</string>
+    <string name="login_placeholdermail">Ingrese correo</string>
+    <string name="login_placeholderclave">Ingrese clave</string>
+    <string name="login_pass">Contraseña</string>
+    <string name="login_recordar">Recordarme</string>
+    <string name="login_ingresar">Ingresar</string>
+    <string name="login_registrarme">Registrarme</string>
+
+
+    <string name="menu_title">Pidiendo..</string>
+    <string name="menu_importe">Importe estimado:</string>
+    <string name="menu_enviarPedido">Enviar Pedido</string>
+    <string name="menu_cantidadPedidos">Cantidad de elementos:</string>
+
+    <string name="pedido_title">Mi Pedido</string>
+
+
     <string name="registro_title">Esta es la pantalla de registro</string>
     <string name="registro_subtitle">Por favor ingrese datos verdaderos</string>
+    <string name="registro_nombre">Nombre</string>
+    <string name="registro_apellido">Apellido</string>
+    <string name="registro_dni">DNI</string>
+    <string name="registro_email">Correo</string>
+    <string name="registro_clave">Contraseña</string>
+    <string name="registro_reclave">Reingrese</string>
+    <string name="registro_registrarse">Registrarse</string>
+
+
+    <string name="toolbar_cafe">Cafe/Bebidas</string>
+    <string name="toolbar_menus">Menus</string>
+    <string name="toolbar_snacks">Snacks</string>
+    <string name="toolbar_verpedido">Ver Pedido</string>
+    <string name="toolbar_desloguarse">Desloguear</string>
+
+
+    <string name="dialogo_loginusererror">Usuario o contraseña incorrectos</string>
+    <string name="validacion_loginemail">Formato inválido</string>
+    <string name="validacion_campoVacio">El campo no puede estar vacio</string>
+    <string name="dialogo_menuvacio">No cuenta con items seleccionados</string>
+    <string name="dialogo_registroDuplicadoTitulo">Error al registrar los datos</string>
+    <string name="dialogo_registroDuplicadoMensaje">El email o el dni ya se encuentran registrados</string>
+    <string name="validacion_passIguales">Las claves deben ser iguales</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="pedido_enviado">Su pedido ha sido enviado</string>
+    <string name="aceptar">Aceptar</string>
+
+
+
+
+
 </resources>

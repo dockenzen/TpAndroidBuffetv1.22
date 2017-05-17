@@ -29,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registro_title"
-            android:id="@+id/text1"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/title"
             android:layout_centerHorizontal="true" />
@@ -53,14 +52,14 @@
 
             <TableRow>
 
-                <TextView android:textColor="@color/colorLabel" android:text="Nombre" android:layout_width="wrap_content" android:layout_height="wrap_content"  />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_nombre" android:layout_width="wrap_content" android:layout_height="wrap_content"  />
                 <EditText android:hint="Leandro" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtNombre" />
 
             </TableRow>
 
             <TableRow>
 
-                <TextView android:textColor="@color/colorLabel" android:text="Apellido" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_apellido" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 
                 <EditText android:hint="Baldassarre" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtApellido" />
 
@@ -68,14 +67,14 @@
 
             <TableRow>
 
-                <TextView android:textColor="@color/colorLabel" android:text="DNI" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_dni" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 
-                <EditText android:hint="37180775" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtDni" />
+                <EditText android:hint="37180775" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtDni"  />
 
             </TableRow>
             <TableRow>
 
-                <TextView android:textColor="@color/colorLabel" android:text="Email" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_email" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 
                 <EditText android:hint="lea_eldoc@hotmail.com" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtEmail" />
 
@@ -83,14 +82,14 @@
 
             <TableRow>
 
-                <TextView android:textColor="@color/colorLabel" android:text="Clave" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_clave" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 
                 <EditText android:hint="Contraseña" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtClave1"/>
 
             </TableRow>
 
             <TableRow>
-                <TextView android:textColor="@color/colorLabel" android:text="Reingrese" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textColor="@color/colorLabel" android:text="@string/registro_reclave" android:layout_width="wrap_content" android:layout_height="wrap_content" />
                 <EditText android:hint="Repita contraseña" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="6dp" android:id="@+id/txtReClave2"/>
             </TableRow>
 

@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TpAndroidBuffet1.22</string>
+    <string name="login_bienvenida">Welcome to the first application </string>
     <string name="ingresar">Enter</string>
+    <string name="login_title">This is a log screen</string>
+    <string name="login_subtitle">Please enter real data</string>
+    <string name="login_mail">Email</string>
+    <string name="login_placeholdermail">Enter email</string>
+    <string name="login_placeholderclave">Enter password</string>
+    <string name="login_pass">Password</string>
+    <string name="login_recordar">Remember me</string>
+    <string name="login_ingresar">Enter</string>
+    <string name="login_registrarme">Register</string>
+
+
+    <string name="menu_title">Ordering..</string>
+    <string name="menu_importe">Estimated Amount:</string>
+    <string name="menu_enviarPedido">Send the order</string>
+    <string name="menu_cantidadPedidos">Number  of elements:</string>
+
+    <string name="pedido_title">My order..</string>
+
+
+    <string name="registro_title">This is the registration screen</string>
+    <string name="registro_subtitle">Please enter true data</string>
+    <string name="registro_nombre">Name</string>
+    <string name="registro_apellido">Surname</string>
+    <string name="registro_dni">ID</string>
+    <string name="registro_email">Email</string>
+    <string name="registro_clave">Password</string>
+    <string name="registro_reclave">Reentry</string>
+    <string name="registro_registrarse">Register</string>
+
+
+    <string name="toolbar_cafe">Coffee/Drinks</string>
+    <string name="toolbar_menus">Menus</string>
+    <string name="toolbar_snacks">Snacks</string>
+    <string name="toolbar_verpedido">View Order</string>
+    <string name="toolbar_desloguarse">Logout</string>
+
+
+    <string name="dialogo_loginusererror">User or password wrong</string>
+    <string name="validacion_loginemail">Invalid format</string>
+    <string name="validacion_campoVacio">Field can not be empty</string>
+    <string name="dialogo_menuvacio">No selected items</string>
+    <string name="dialogo_registroDuplicadoTitulo">Error registering data</string>
+    <string name="dialogo_registroDuplicadoMensaje">Email or ID are already registered </string>
+    <string name="validacion_passIguales">The keys must be the same</string>
+    <string name="cantidad">Quantity</string>
+    <string name="pedido_enviado">Your order has been sent</string>
+    <string name="aceptar">Accept</string>
+
+
 </resources>

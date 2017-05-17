@@ -27,4 +27,16 @@ public class Pedido {
     public void setTotal(Double total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (Producto prod: this.lista)
+        {
+            str.append(prod.getNombre()+"\t\t\t"+prod.getCantidad()+"\n");
+        }
+            str.append("\n\n\n"+"Total:   "+this.getTotal());
+
+        return str.toString();
+    }
 }

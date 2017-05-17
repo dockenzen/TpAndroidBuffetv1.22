@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.user.tpandroidbuffetv12.R;
+import com.example.user.tpandroidbuffetv12.model.Dialogo;
+import com.example.user.tpandroidbuffetv12.model.PedidoAlertListener;
+import com.example.user.tpandroidbuffetv12.model.Usuario;
 
 /**
  * Created by USER on 1/5/2017.
@@ -48,41 +51,50 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(nombre.getText().toString().trim().isEmpty())
         {
-            nombre.setError("El campo nombre no puede ser vacio");
+            nombre.setError(getString(R.string.validacion_campoVacio));
         }else
         if(apellido.getText().toString().trim().isEmpty())
         {
-            apellido.setError("El campo apellido no puede ser vacio");
+            apellido.setError(getString(R.string.validacion_campoVacio));
         }else
         if(dni.getText().toString().trim().isEmpty())
         {
-            dni.setError("El campo dni no puede ser vacio");
+            dni.setError(getString(R.string.validacion_campoVacio));
         }else
         if(email.getText().toString().trim().isEmpty())
         {
-            email.setError("El campo email no puede ser vacio");
+            email.setError(getString(R.string.validacion_campoVacio));
         } else
         if(!Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches())
         {
-            email.setError("Formato inválido");
+            email.setError(getString(R.string.validacion_loginemail));
         }else
         if(pass1.getText().toString().trim().isEmpty())
         {
-            pass1.setError("El campo clave no puede ser vacio");
+            pass1.setError(getString(R.string.validacion_campoVacio));
         }else
         if(pass2.getText().toString().trim().isEmpty())
         {
-            pass2.setError("El campo clave no puede ser vacio");
+            pass2.setError(getString(R.string.validacion_campoVacio));
         }else
         if(!pass1.getText().toString().trim().equals(pass2.getText().toString().trim()))
         {
-            pass2.setError("Las claves deben ser iguales");
+            pass2.setError(getString(R.string.validacion_passIguales));
         }
         else
         {
-            Intent intento = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intento);
-
+            if(Usuario.verificarDuplicado(email.getText().toString(),dni.getText().toString()))
+            {
+                Dialogo d = new Dialogo();
+                d.setListener(new PedidoAlertListener());
+                d.setTitulo(getString(R.string.dialogo_registroDuplicadoTitulo));
+                d.setMensaje(getString(R.string.dialogo_registroDuplicadoMensaje));
+                d.show(getFragmentManager(),"Registro error");
+            }
+            else
+            {
+                finish();
+            }
         }
     }
 }

@@ -1,6 +1,10 @@
 package com.example.user.tpandroidbuffetv12.adapHold;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,16 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.user.tpandroidbuffetv12.Http.Hilo;
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
 import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
+import com.example.user.tpandroidbuffetv12.model.Dialogo;
+import com.example.user.tpandroidbuffetv12.model.PedidoAlertListener;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
 /**
  * Created by USER on 2/5/2017.
  */
 
-public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener, Handler.Callback {
 
     View v;
     TextView nombre;
@@ -45,6 +53,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         this.boton.setOnClickListener(this);
         this.enviarPedido.setOnClickListener(this);
 
+
+
     }
 
     @Override
@@ -52,7 +62,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         if(v.getId() == this.boton.getId())
         {
             Integer cantidad = 0;
-            Producto o = new Producto(this.nombre.getText().toString(),Double.parseDouble(this.precio.getText().toString()),1);
+            Producto o = new Producto(this.nombre.getText().toString(),Double.parseDouble(this.precio.getText().toString()),1,"");
             Boolean esta = this.acc.pedido.getLista().contains(o);
             if(!esta)
             {
@@ -61,22 +71,30 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
             else
             {
                 (this.acc.pedido.getLista().get(this.acc.pedido.getLista().indexOf(o))).setCantidad(1);
-
             }
 
             Double estimado = calcularEstimado();
+            this.acc.pedido.setTotal(estimado);
             this.importeEstimado.setText("$"+estimado.toString());
-            cantidad = Integer.parseInt(this.cantidadElementos.getText().toString());
-            cantidad++;
-            this.cantidadElementos.setText(cantidad.toString());
+            this.cantidadElementos.setText(String.valueOf(this.calcularItems()));
         }
         if(v.getId() == this.enviarPedido.getId())
         {
-
-            Log.d("Estoy","aqie");
-            Intent intento = new Intent(this.acc.getApplicationContext(), PedidoActivity.class);
-            this.acc.startActivity(intento);
-
+            if(this.acc.pedido.getLista().size() == 0)
+            {
+                Dialogo d = new Dialogo();
+                d.setListener(new PedidoAlertListener());
+                if(MenuActivity.pedido.getLista().size() == 0){
+                    d.setTitulo("Error");
+                    d.setMensaje(this.acc.getString(R.string.dialogo_menuvacio));
+                    d.show(this.acc.getFragmentManager(),"Error pedido");
+                }
+            }
+            else
+            {
+                Intent intento = new Intent(this.acc.getApplicationContext(), PedidoActivity.class);
+                this.acc.startActivity(intento);
+            }
         }
     }
 
@@ -89,5 +107,37 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
             total += prod.getPrecio() * prod.getCantidad();
         }
         return total;
+    }
+
+
+    private int calcularItems() {
+        int acumulador = 0;
+        for (Producto prod : this.acc.pedido.getLista()) {
+            acumulador += prod.getCantidad();
+        }
+        return acumulador;
+    }
+
+
+    @Override
+    public boolean handleMessage(Message msg) {
+
+        //tiene que ser algo que este definido dentro del thread de la grafica ese algo
+        //que reciba los mensajes
+        //identificador para relacionar ocn algo
+        switch(msg.arg1)
+        {
+            case 0:
+                Log.d("error","error");
+
+                break;
+            case 1:
+                Log.d("activit","recibiendo foto");
+                byte[] bytes = (byte[])msg.obj;
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                this.imagen.setImageBitmap(bitmap);
+                break;
+        }
+        return true;
     }
 }

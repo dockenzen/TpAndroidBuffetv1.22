@@ -24,7 +24,7 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mi pedido"
+                    android:text="@string/pedido_title"
                     android:textSize="20dp"/>
                 <EditText
                     android:textColor="#000000"
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginRight="1dp"
-                    android:text="Importe estimado:"/>
+                    android:text="@string/menu_importe"/>
             </android.support.v7.widget.Toolbar>
         </LinearLayout>
         <LinearLayout
@@ -56,7 +56,7 @@
                 android:id="@+id/terminarPedidoBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enviar Pedido"/>
+                android:text="@string/menu_enviarPedido"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -78,8 +78,6 @@
                 android:id="@+id/listPedido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_marginTop="30dp"
                 android:scrollbars="vertical">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>

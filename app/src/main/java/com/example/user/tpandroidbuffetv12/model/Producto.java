@@ -1,6 +1,5 @@
 package com.example.user.tpandroidbuffetv12.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -12,17 +11,31 @@ public class Producto {
     private String nombre;
     private Double precio;
     private Integer cantidad;
+    private String urlImagen;
+    private byte[] imagenDescargada;
 
     private static ArrayList<Producto> listaMenu;
     private static ArrayList<Producto> listaBebidas;
     private static ArrayList<Producto> listaSnacks;
 
 
+    public Producto(String name, Double price){
+        this.setNombre(name);
+        this.setPrecio(price);
+
+    }
 
     public Producto(String name, Double price, Integer cantidad){
         this.setNombre(name);
         this.setPrecio(price);
         this.cantidad = cantidad;
+    }
+
+    public Producto(String name, Double price, Integer cantidad,String url){
+        this.setNombre(name);
+        this.setPrecio(price);
+        this.cantidad = cantidad;
+        this.setUrlImagen(url);
     }
 
     public String getNombre() {
@@ -54,11 +67,11 @@ public class Producto {
         if(listaMenu == null)
         {
             listaMenu = new ArrayList<Producto>();
-            listaMenu.add(new Producto("Pizza", 15.50,1));
-            listaMenu.add(new Producto("Tostados",25.0,1));
-            listaMenu.add(new Producto("Frutas",30.0,1));
-            listaMenu.add(new Producto("Empanadas",15.0,1));
-            listaMenu.add(new Producto("Hamburguesa",45.0,1));
+            listaMenu.add(new Producto("Pizza", 15.50,1,"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg"));
+            listaMenu.add(new Producto("Tostados",25.0,1,""));
+            listaMenu.add(new Producto("Frutas",30.0,1,""));
+            listaMenu.add(new Producto("Empanadas",15.0,1,"http://planetaempanada.com/pe/wp-content/uploads/2014/08/Empanadas-planeta.png"));
+            listaMenu.add(new Producto("Hamburguesa",45.0,1,""));
         }
         return listaMenu;
     }
@@ -106,9 +119,9 @@ public class Producto {
         {    resultado = resultado + hash * this.nombre.hashCode();}
         resultado = resultado + hash * this.precio.hashCode();
         return resultado;
-
-
     }
+
+
 
     public Integer getCantidad() {
         return cantidad;
@@ -116,5 +129,21 @@ public class Producto {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad += cantidad;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    public byte[] getImagenDescargada() {
+        return imagenDescargada;
+    }
+
+    public void setImagenDescargada(byte[] imagenDescargada) {
+        this.imagenDescargada = imagenDescargada;
     }
 }

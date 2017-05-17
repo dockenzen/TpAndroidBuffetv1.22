@@ -24,7 +24,7 @@
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Pidiendo..."
+    android:text="@string/menu_title"
     android:textSize="20dp"/>
             <EditText
             android:textColor="#000000"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="1dp"
-                android:text="Importe estimado:"/>
+                android:text="@string/menu_importe"/>
         </android.support.v7.widget.Toolbar>
 </LinearLayout>
     <LinearLayout
@@ -56,7 +56,8 @@
             android:id="@+id/enviarPedidoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar Pedido"
+            android:text="@string/menu_enviarPedido"
+            android:backgroundTint="@color/colorFondo"
             />
 <LinearLayout
     android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cantidad de elementos: "
+            android:text="@string/menu_cantidadPedidos"
             />
 
         <EditText
@@ -78,7 +79,7 @@
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="1"
+            android:ems="2"
             android:enabled="false"
             android:inputType="none"
             android:focusable="false"/>
@@ -87,6 +88,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.SlidingPaneLayout
+        android:background="@drawable/fondobuffet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
@@ -105,8 +107,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_marginTop="30dp"
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>

@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <group android:menuCategory="alternative"  android:enabled="true">
-        <item app:showAsAction="always" android:enabled="true" android:title="Cafe/Bebidas" android:id="@+id/opcion1"></item>
-        <item app:showAsAction="always" android:enabled="true" android:title="Menus" android:id="@+id/opcion2"></item>
-        <item app:showAsAction="always" android:enabled="true" android:title="Snacks" android:id="@+id/opcion3"></item>
-        <item app:showAsAction="collapseActionView" android:enabled="true" android:title="Ver Pedido" android:id="@+id/opcion4"></item>
-        <item app:showAsAction="collapseActionView" android:enabled="true" android:title="Desloguear" android:id="@+id/opcion5"></item>
+        <item app:showAsAction="always" android:enabled="true" android:title="@string/toolbar_cafe" android:id="@+id/opcion1"></item>
+        <item app:showAsAction="always" android:enabled="true" android:title="@string/toolbar_menus" android:id="@+id/opcion2"></item>
+        <item app:showAsAction="always" android:enabled="true" android:title="@string/toolbar_snacks" android:id="@+id/opcion3"></item>
+        <item app:showAsAction="collapseActionView" android:enabled="true" android:title="@string/toolbar_verpedido" android:id="@+id/opcion4"></item>
+        <item app:showAsAction="collapseActionView" android:enabled="true" android:title="@string/toolbar_desloguarse" android:id="@+id/opcion5"></item>
     </group>
 </menu>

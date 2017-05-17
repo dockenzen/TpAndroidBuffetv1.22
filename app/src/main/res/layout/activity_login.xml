@@ -32,8 +32,7 @@
         android:textSize="17dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido a la primer aplicacion"
-        android:id="@+id/text1"
+        android:text="@string/login_bienvenida"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true" />
@@ -68,7 +67,7 @@
         <TextView
             android:textColor="@color/colorLabel"
             android:id="@+id/txtMail"
-            android:text="Mail"
+            android:text="@string/login_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -77,7 +76,7 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Ingrese email"
+            android:hint="@string/login_placeholdermail"
             android:gravity="center"
             android:inputType="textEmailAddress"/>
         />
@@ -94,7 +93,7 @@
         <TextView
             android:textColor="@color/colorLabel"
             android:id="@+id/txtClave"
-            android:text="Clave"
+            android:text="@string/login_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
@@ -104,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/email"
             android:inputType="textPassword"
-            android:hint="Ingrese clave"/>
+            android:hint="@string/login_placeholderclave"/>
 
     </LinearLayout>
     <LinearLayout
@@ -117,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Recordarme"
+            android:text="@string/login_recordar"
             android:layout_marginBottom="10dp"
             />
 
@@ -127,14 +126,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/ingresar"
         android:layout_above="@+id/registrar"
-        android:text="Ingresar"
+        android:text="@string/login_ingresar"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registrar"
-        android:text="Registrarse"
+        android:text="@string/login_registrarme"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/imageView" />
 </LinearLayout>

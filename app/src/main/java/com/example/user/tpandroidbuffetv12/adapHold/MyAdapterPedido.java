@@ -1,12 +1,18 @@
 package com.example.user.tpandroidbuffetv12.adapHold;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.user.tpandroidbuffetv12.Http.Hilo;
 import com.example.user.tpandroidbuffetv12.R;
+import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
 import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
@@ -38,9 +44,9 @@ public class MyAdapterPedido extends RecyclerView.Adapter<MyViewHolderPedido>
     public void onBindViewHolder(MyViewHolderPedido holder, int position) {
         Producto per = lista.get(position);
         holder.nombre.setText(per.getNombre());
-        holder.precio.setText(String.format("%.2f",per.getPrecio()));
-        holder.importeEstimado.setText("444");
-
+        holder.precio.setText(String.format("$ %.2f ",per.getPrecio()));
+        holder.txtCantidadProductoPedido.setText(this.acc.getString(R.string.cantidad)+": "+per.getCantidad());
+        holder.importeEstimado.setText(String.format("$ %.2f ",MenuActivity.pedido.getTotal()));
         Log.d("MVH","2 ON BIND VIEW HOLDER");
     }
 
@@ -53,5 +59,6 @@ public class MyAdapterPedido extends RecyclerView.Adapter<MyViewHolderPedido>
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
     }
+
 
 }

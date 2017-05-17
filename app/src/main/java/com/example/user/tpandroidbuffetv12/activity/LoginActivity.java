@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.user.tpandroidbuffetv12.R;
+import com.example.user.tpandroidbuffetv12.model.Dialogo;
+import com.example.user.tpandroidbuffetv12.model.PedidoAlertListener;
+import com.example.user.tpandroidbuffetv12.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +31,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_login);
+        Usuario.cargarUsuarios();
+        setContentView(R.layout.activity_login);
         loguear = (Button) findViewById(R.id.ingresar);
         registrar = (Button) findViewById(R.id.registrar);
         email = (EditText) findViewById(R.id.email);
@@ -38,8 +42,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         registrar.setOnClickListener(this);
 
         SharedPreferences share = getSharedPreferences("miConfig",MODE_PRIVATE);
-        email.setText(share.getString(USER,""));
-        pass.setText(share.getString(PASS,""));
+        email.setText(share.getString(USER,"user1@hotmail.com"));
+        pass.setText(share.getString(PASS,"user1"));
         remember.setSelected(share.getBoolean(RECORDAR,false));
 
 
@@ -55,34 +59,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(v.getId() == this.loguear.getId())
         {
             SharedPreferences share;
-            if (pass.getText().toString().isEmpty()) {
-                pass.setError("El campo clave no puede estar vacio");
-            }
             if (email.getText().toString().isEmpty()) {
-                email.setError("El campo email no puede estar vacio");
+                email.setError(getString(R.string.validacion_campoVacio));
+            }
+            if (pass.getText().toString().isEmpty()) {
+                pass.setError(getString(R.string.validacion_campoVacio));
             }
             if (Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
-                if (remember.isChecked()) {
-                    share = getSharedPreferences("miConfig", MODE_PRIVATE);
-                    share.edit().putBoolean(RECORDAR, true);
-                    share.edit().putString(USER, email.getText().toString());
-                    share.edit().putString(PASS, pass.getText().toString());
-                    share.edit().apply();
-                    Log.d("spa", "pase x aca");
+                if(Usuario.verificarUsuario(email.getText().toString(),pass.getText().toString())) {
+                    if (remember.isChecked())
+                    {
+                        share = getSharedPreferences("miConfig", MODE_PRIVATE);
+                        share.edit().putBoolean(RECORDAR, true);
+                        share.edit().putString(USER, email.getText().toString());
+                        share.edit().putString(PASS, pass.getText().toString());
+                        share.edit().apply();
+                        Log.d("spa", "pase x aca");
+                    }
+                    Log.d("aca llege", "eaea");
+                    intento = new Intent(getApplicationContext(), MenuActivity.class);
+                    startActivity(intento);
                 }
-                //mandame a otro lado papa
-                Log.d("aca llege", "eaea");
-                intento = new Intent(getApplicationContext(), MenuActivity.class);
-                startActivity(intento);
+                else
+                {
+                    Dialogo d = new Dialogo();
+                    d.setListener(new PedidoAlertListener());
+                    d.setTitulo("Login error");
+                    d.setMensaje(getString(R.string.dialogo_loginusererror));
+                    d.show(getFragmentManager(),"Error logueo");
+                }
             } else {
-                email.setError("Formato inválido");
+                email.setError(getString(R.string.validacion_loginemail));
             }
         }
         if (v.getId() == this.registrar.getId())
         {
             intento = new Intent(getApplicationContext(), RegisterActivity.class);
             startActivity(intento);
-
         }
     }
 

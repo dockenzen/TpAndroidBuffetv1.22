@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.controller.PedidoController;
+import com.example.user.tpandroidbuffetv12.model.Pedido;
 
 /**
  * Created by alumno on 09/05/2017.
@@ -16,6 +17,7 @@ import com.example.user.tpandroidbuffetv12.controller.PedidoController;
 
 public class PedidoActivity extends AppCompatActivity {
 
+    public PedidoController pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class PedidoActivity extends AppCompatActivity {
 */
         FloatingActionButton loguear = (FloatingActionButton) findViewById(R.id.deleteProd);
 
-        PedidoController pd = new PedidoController(this);
+        pd = new PedidoController(this);
 
     }
 }
