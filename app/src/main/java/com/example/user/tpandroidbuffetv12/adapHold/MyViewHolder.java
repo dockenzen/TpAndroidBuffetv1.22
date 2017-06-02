@@ -26,7 +26,7 @@ import com.example.user.tpandroidbuffetv12.model.Producto;
  * Created by USER on 2/5/2017.
  */
 
-public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener, Handler.Callback {
+public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
     View v;
     TextView nombre;
@@ -116,28 +116,5 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
             acumulador += prod.getCantidad();
         }
         return acumulador;
-    }
-
-
-    @Override
-    public boolean handleMessage(Message msg) {
-
-        //tiene que ser algo que este definido dentro del thread de la grafica ese algo
-        //que reciba los mensajes
-        //identificador para relacionar ocn algo
-        switch(msg.arg1)
-        {
-            case 0:
-                Log.d("error","error");
-
-                break;
-            case 1:
-                Log.d("activit","recibiendo foto");
-                byte[] bytes = (byte[])msg.obj;
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                this.imagen.setImageBitmap(bitmap);
-                break;
-        }
-        return true;
     }
 }

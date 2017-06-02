@@ -19,6 +19,10 @@ public class Producto {
     private static ArrayList<Producto> listaSnacks;
 
 
+    public Producto(){
+
+    }
+
     public Producto(String name, Double price){
         this.setNombre(name);
         this.setPrecio(price);

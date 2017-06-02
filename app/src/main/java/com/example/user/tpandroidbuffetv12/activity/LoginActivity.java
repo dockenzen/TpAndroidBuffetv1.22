@@ -70,10 +70,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (remember.isChecked())
                     {
                         share = getSharedPreferences("miConfig", MODE_PRIVATE);
-                        share.edit().putBoolean(RECORDAR, true);
-                        share.edit().putString(USER, email.getText().toString());
-                        share.edit().putString(PASS, pass.getText().toString());
-                        share.edit().apply();
+                        SharedPreferences.Editor e  = share.edit();
+                        e.putBoolean(RECORDAR, true);
+                        e.putString(USER, email.getText().toString());
+                        e.putString(PASS, pass.getText().toString());
+                        e.commit();
                         Log.d("spa", "pase x aca");
                     }
                     Log.d("aca llege", "eaea");
