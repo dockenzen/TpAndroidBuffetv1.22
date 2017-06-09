@@ -1,6 +1,11 @@
 package com.example.user.tpandroidbuffetv12.Http;
 
 import android.util.Log;
+import android.view.MenuInflater;
+
+import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
+import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
+import com.example.user.tpandroidbuffetv12.model.Producto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,7 +26,7 @@ public class HttpConnection {
         urlConnection.setRequestMethod("GET");
         urlConnection.connect();
         int response = urlConnection.getResponseCode();
-        Log.d("http", "Response Code:"+ response);
+        Log.d("http", "Response Code:   "+ response);
         if(response == 200)
         {
             InputStream is = urlConnection.getInputStream();
@@ -39,5 +44,21 @@ public class HttpConnection {
             throw new IOException();
 
     }
+
+    //construimos los productos
+    public String getStrDataByGET() throws IOException
+    {
+        StringBuilder str = new StringBuilder();
+        for (Producto prod : MenuActivity.pedido.getLista())
+        {
+            byte[] bytes = getBytesDataByGET(prod.getUrlImagen());
+
+            str.append(new String(bytes,"UTF-8"));
+        }
+        return str.toString();
+    }
+
+
+
 
 }

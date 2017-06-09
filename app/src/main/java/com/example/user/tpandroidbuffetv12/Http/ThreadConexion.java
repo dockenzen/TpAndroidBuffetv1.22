@@ -13,8 +13,8 @@ import android.util.Log;
 public class ThreadConexion implements Handler.Callback
 {
     @Override
-    public boolean handleMessage(Message msg) {
-
+    public boolean handleMessage(Message msg)
+    {
         //tiene que ser algo que este definido dentro del thread de la grafica ese algo
         //que reciba los mensajes
         //identificador para relacionar ocn algo
@@ -29,6 +29,8 @@ public class ThreadConexion implements Handler.Callback
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
          //       this.imagen.setImageBitmap(bitmap);
                 break;
+            case 2:
+                Log.d("activity","devolviendo foto");
         }
         return true;
     }

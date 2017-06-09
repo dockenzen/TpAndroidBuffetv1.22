@@ -71,11 +71,11 @@ public class Producto {
         if(listaMenu == null)
         {
             listaMenu = new ArrayList<Producto>();
-            listaMenu.add(new Producto("Pizza", 15.50,1,"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg"));
-            listaMenu.add(new Producto("Tostados",25.0,1,""));
-            listaMenu.add(new Producto("Frutas",30.0,1,""));
-            listaMenu.add(new Producto("Empanadas",15.0,1,"http://planetaempanada.com/pe/wp-content/uploads/2014/08/Empanadas-planeta.png"));
-            listaMenu.add(new Producto("Hamburguesa",45.0,1,""));
+            listaMenu.add(new Producto("Pizza", 12.50,1,"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg"));
+            listaMenu.add(new Producto("Tostados",25.0,1,"https://www.cater-line.com/wp-content/uploads/2014/06/SCM-Sandw.Club-Mixto-Tostado-Caliente.png"));
+            listaMenu.add(new Producto("Frutas",30.0,1,"http://www.frutasdelfraile.com/wp-content/uploads/2016/05/fruta-frutas-del-fraile.jpg"));
+            listaMenu.add(new Producto("Empanadas",16.0,1,"http://planetaempanada.com/pe/wp-content/uploads/2014/08/Empanadas-planeta.png"));
+            listaMenu.add(new Producto("Hamburguesa",80.0,1,"http://bk-latam-prod.s3.amazonaws.com/sites/burgerking.cl/files/BK_300x270_hamburguesa_deluxe_queso.png"));
         }
         return listaMenu;
     }
@@ -84,11 +84,11 @@ public class Producto {
         if(listaBebidas == null)
         {
             listaBebidas = new ArrayList<Producto>();
-            listaBebidas.add(new Producto("Coca Cola", 15.50,1));
-            listaBebidas.add(new Producto("Sprite",25.0,1));
-            listaBebidas.add(new Producto("Agua Mineral",30.0,1));
-            listaBebidas.add(new Producto("Pepsi",15.0,1));
-            listaBebidas.add(new Producto("Gatorei",45.0,1));
+            listaBebidas.add(new Producto("Coca Cola", 20.00,1,"http://www.36700.suborder.de/images/shop_produkte/ktvdg9v2eb/80.png"));
+            listaBebidas.add(new Producto("Sprite",20.0,1,"http://www.sprite.com.ar/content/dam/GO/sprite/argentina/products/products_Sprite_1.5L.jpg"));
+            listaBebidas.add(new Producto("Agua Mineral",18.0,1,"http://www.ballena.com.ar/images/201408/goods_img/1764_G_1408849750701.jpg"));
+            listaBebidas.add(new Producto("Pepsi",15.0,1,"http://www.cdparque.com.ar/img/sections/productos/pepsi.png"));
+            listaBebidas.add(new Producto("Gatorei",45.0,1,"https://www.dollartree.com/assets/product_images_2016/styles/xlarge/837558.jpg"));
         }
         return listaBebidas;
     }
@@ -97,11 +97,11 @@ public class Producto {
         if(listaSnacks == null)
         {
             listaSnacks = new ArrayList<Producto>();
-            listaSnacks.add(new Producto("Lays", 15.50,1));
-            listaSnacks.add(new Producto("Saladix",25.0,1));
-            listaSnacks.add(new Producto("Cheetos",30.0,1 ));
-            listaSnacks.add(new Producto("3D",15.0,1));
-            listaSnacks.add(new Producto("Doritos",45.0,1));
+            listaSnacks.add(new Producto("Lays", 15.50,1,"http://2.bp.blogspot.com/_tQVckLGToNA/TB_rn9LxlZI/AAAAAAAAEjk/mpV31bXbmgU/s1600/LAYS_Classic.gif"));
+            listaSnacks.add(new Producto("Saladix",25.0,1,"http://www.arcor.com.ar/images/historiaMarcas-saladix03.jpg"));
+            listaSnacks.add(new Producto("Cheetos",30.0,1,"http://www.cheetos.com.mx/imgs/productos/big/cheetos-1.png"));
+            listaSnacks.add(new Producto("3D",15.0,1,"http://supermundialonline.com/26911-home_default/pepsico-3d-megatube-38-grs.jpg"));
+            listaSnacks.add(new Producto("Doritos",45.0,1,"http://www.fritolay.com/images/default-source/blue-bag-image/doritos-nacho-cheese.png?sfvrsn=2"));
         }
         return listaSnacks;
     }
@@ -124,8 +124,6 @@ public class Producto {
         resultado = resultado + hash * this.precio.hashCode();
         return resultado;
     }
-
-
 
     public Integer getCantidad() {
         return cantidad;

@@ -13,10 +13,12 @@ public class Hilo implements  Runnable
 {
     private String ruta;
     private Handler handler;
-    public Hilo(Handler h,String ruta)
+    private int valor;
+    public Hilo(Handler h,String ruta,int valor)
     {
         this.handler = h;
         this.ruta = ruta;
+        this.valor = valor;
     }
 
     /**
@@ -25,11 +27,12 @@ public class Hilo implements  Runnable
     @Override
     public void run() {
         Message m = new Message();
+
         HttpConnection httpConnection = new HttpConnection();
         try
         {
             m.obj = httpConnection.getBytesDataByGET(this.ruta);
-            m.arg1  = 1;
+            m.arg1  = this.valor;
         } catch (IOException e) {
             e.printStackTrace();
         }
