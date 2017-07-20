@@ -16,6 +16,9 @@ import com.example.user.tpandroidbuffetv12.adapHold.MyAdapterPedido;
 import com.example.user.tpandroidbuffetv12.model.Pedido;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by alumno on 09/05/2017.
  */
@@ -41,7 +44,8 @@ public class PedidoController implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        MenuActivity.pedido = new Pedido();
+        MenuActivity.pedido.getLista().clear();
+        this.limpiarCantidades();
         this.contexto.finish();
     }
 
@@ -49,4 +53,18 @@ public class PedidoController implements DialogInterface.OnClickListener {
     {
         adapter.notifyDataSetChanged();
     }
+
+    private void limpiarCantidades()
+    {
+        List<Producto> superLista = new ArrayList<Producto>();
+        superLista.addAll(Producto.getStaticListBebidas());
+        superLista.addAll(Producto.getStaticListMenus());
+        superLista.addAll(Producto.getStaticListSnacks());
+
+        for (Producto prod: superLista) {
+
+            prod.reiniciarCantidad();
+        }
+    }
 }
+

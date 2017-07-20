@@ -14,7 +14,6 @@ public class Producto {
     private String tipoMenu;
     private Double precio;
     private Integer cantidad;
-
     private String urlImagen;
     private Bitmap imagenDescargada;
 
@@ -23,71 +22,60 @@ public class Producto {
     private static ArrayList<Producto> listaSnacks;
 
 
-    public Producto(){ }
+    public Producto(){
+        this.nombre = "";
+        this.tipoMenu = "";
+        this.precio = 0d;
+        this.cantidad = 0;
+    }
 
     public Producto(String name, String tipoMenu, Double price, String imagen){
         this.setNombre(name);
         this.setPrecio(price);
         this.tipoMenu = tipoMenu;
         this.urlImagen = imagen;
+        this.cantidad = 0;
 
     }
 
     public Producto(String name, Double price){
         this.setNombre(name);
         this.setPrecio(price);
+        this.cantidad = 0;
     }
-
-    public Producto(String name, Double price, Integer cantidad,String url){
-        this.setNombre(name);
-        this.setPrecio(price);
-        this.cantidad = cantidad;
-        this.setUrlImagen(url);
-    }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public Double getPrecio() {
         return precio;
     }
-
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public static ArrayList<Producto> getStaticListMenus()
-    {
+    public static ArrayList<Producto> getStaticListMenus() {
         if(listaMenu == null)
         {
             listaMenu = new ArrayList<Producto>();
         }
         return listaMenu;
     }
-
-    public static ArrayList<Producto> getStaticListBebidas()
-    {
+    public static ArrayList<Producto> getStaticListBebidas() {
         if(listaBebidas == null)
         {
             listaBebidas = new ArrayList<Producto>();
         }
         return listaBebidas;
     }
-    public static ArrayList<Producto> getStaticListSnacks()
-    {
+    public static ArrayList<Producto> getStaticListSnacks(){
         if(listaSnacks == null)
         {
             listaSnacks = new ArrayList<Producto>();
@@ -139,4 +127,6 @@ public class Producto {
     public void setImagenDescargada(Bitmap imagenDescargada) {
         this.imagenDescargada = imagenDescargada;
     }
+    public void reiniciarCantidad()
+    {this.cantidad = 0;}
 }

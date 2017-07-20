@@ -2,6 +2,7 @@ package com.example.user.tpandroidbuffetv12.adapHold;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +54,7 @@ public class MyViewHolderPedido extends RecyclerView.ViewHolder  implements View
     @Override
     public void onClick(View v) {
 
+
         if(v.getId()== this.boton.getId())
         {
             Producto o = new Producto(this.nombre.getText().toString(),Double.parseDouble(this.precio.getText().toString().replace("$","")));
@@ -88,7 +90,6 @@ public class MyViewHolderPedido extends RecyclerView.ViewHolder  implements View
                 d.setMensaje(MenuActivity.pedido.toString());
                 d.show(this.pedidoActivity.getFragmentManager(),"Pedido hecho");
             }
-
         }
     }
     private Double calcularEstimado()

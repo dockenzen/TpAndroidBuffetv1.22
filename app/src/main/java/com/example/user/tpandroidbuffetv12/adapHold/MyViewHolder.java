@@ -22,6 +22,9 @@ import com.example.user.tpandroidbuffetv12.model.Dialogo;
 import com.example.user.tpandroidbuffetv12.model.PedidoAlertListener;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by USER on 2/5/2017.
  */
@@ -53,23 +56,19 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         this.boton.setOnClickListener(this);
         this.enviarPedido.setOnClickListener(this);
 
-
-
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == this.boton.getId())
-        {
+        if(v.getId() == this.boton.getId()){
+            Producto o = this.getProductoClickeado();
             Integer cantidad = 0;
-            Producto o = new Producto(this.nombre.getText().toString(),Double.parseDouble(this.precio.getText().toString()),1,"");
             Boolean esta = this.acc.pedido.getLista().contains(o);
-            if(!esta)
-            {
+            if(!esta){
+                o.setCantidad(1);
                 this.acc.pedido.add(o);
             }
-            else
-            {
+            else{
                 (this.acc.pedido.getLista().get(this.acc.pedido.getLista().indexOf(o))).setCantidad(1);
             }
 
@@ -78,10 +77,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
             this.importeEstimado.setText("$"+estimado.toString());
             this.cantidadElementos.setText(String.valueOf(this.calcularItems()));
         }
-        if(v.getId() == this.enviarPedido.getId())
-        {
-            if(this.acc.pedido.getLista().size() == 0)
-            {
+        if(v.getId() == this.enviarPedido.getId()){
+            if(this.acc.pedido.getLista().size() == 0){
                 Dialogo d = new Dialogo();
                 d.setListener(new PedidoAlertListener());
                 if(MenuActivity.pedido.getLista().size() == 0){
@@ -90,8 +87,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
                     d.show(this.acc.getFragmentManager(),"Error pedido");
                 }
             }
-            else
-            {
+            else{
                 Intent intento = new Intent(this.acc.getApplicationContext(), PedidoActivity.class);
                 this.acc.startActivity(intento);
             }
@@ -108,8 +104,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         }
         return total;
     }
-
-
     private int calcularItems() {
         int acumulador = 0;
         for (Producto prod : this.acc.pedido.getLista()) {
@@ -117,4 +111,19 @@ public class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         }
         return acumulador;
     }
+    private Producto getProductoClickeado()
+    {
+        List<Producto> superLista = new ArrayList<Producto>();
+        Producto prod = new Producto();
+        prod.setImagenDescargada(this.imagen.getDrawingCache());
+        prod.setCantidad(1);
+        prod.setNombre(this.nombre.getText().toString());
+        prod.setPrecio(Double.parseDouble(this.precio.getText().toString()));
+        superLista.addAll(Producto.getStaticListBebidas());
+        superLista.addAll(Producto.getStaticListMenus());
+        superLista.addAll(Producto.getStaticListSnacks());
+
+        return superLista.get(superLista.indexOf(prod));
+    }
+
 }

@@ -45,16 +45,6 @@ public class MyAdapterPedido extends RecyclerView.Adapter<MyViewHolderPedido>
     public void onBindViewHolder(MyViewHolderPedido holder, int position) {
         Hilo hilo;
         Producto producto = lista.get(position);
-        ThreadConexion threadConexion = new ThreadConexion(producto,this);
-        if(producto.getImagenDescargada() == null) {
-            hilo = new Hilo(threadConexion,producto.getUrlImagen(),1);
-            producto.setImagenDescargada(producto.getImagenDescargada());//bitmap o byte[] ?
-        }
-        else
-        {
-            hilo = new Hilo(threadConexion,producto.getUrlImagen(),3);
-        }
-        hilo.run();
         holder.nombre.setText(producto.getNombre());
         holder.precio.setText(String.format("$ %.2f ",producto.getPrecio()));
         holder.txtCantidadProductoPedido.setText(this.acc.getString(R.string.cantidad)+": "+producto.getCantidad());
