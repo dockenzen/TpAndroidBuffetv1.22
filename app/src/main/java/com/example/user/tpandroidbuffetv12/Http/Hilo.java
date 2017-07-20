@@ -9,14 +9,15 @@ import java.io.IOException;
  * Created by USER on 11/5/2017.
  */
 
-public class Hilo implements  Runnable
-{
+public class Hilo implements  Runnable{
     private String ruta;
-    private Handler handler;
-    public Hilo(Handler h,String ruta)
-    {
+    private Handler.Callback handler;
+    private int bandera;
+
+    public Hilo(Handler.Callback h,String ruta,int flag){
         this.handler = h;
         this.ruta = ruta;
+        this.bandera = flag;
     }
 
     /**
@@ -24,15 +25,9 @@ public class Hilo implements  Runnable
      */
     @Override
     public void run() {
-        Message m = new Message();
-        HttpConnection httpConnection = new HttpConnection();
-        try
-        {
-            m.obj = httpConnection.getBytesDataByGET(this.ruta);
-            m.arg1  = 1;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.handler.sendMessage(m);
+            Message m = new Message();
+            m.obj = this.ruta;
+            m.arg1  = this.bandera;
+            this.handler.handleMessage(m);
     }
 }

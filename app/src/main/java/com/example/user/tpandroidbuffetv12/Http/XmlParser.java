@@ -18,8 +18,7 @@ import java.util.List;
 public class XmlParser {
     public static List<Producto> lista;
 
-    public static List<Producto> obtenerProductos(String xml)
-    {
+    public static List<Producto> obtenerProductos(String xml) {
         List<Producto> lista = new ArrayList<Producto>();
         XmlPullParser xmlPullParser = Xml.newPullParser();
 

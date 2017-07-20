@@ -1,6 +1,12 @@
 package com.example.user.tpandroidbuffetv12.model;
 
+import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.HttpConnection;
+import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
+import com.example.user.tpandroidbuffetv12.R;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by USER on 13/5/2017.
@@ -13,21 +19,28 @@ public class Usuario
     private String contraseña;
     private String DNI;
     private String email;
-    private static ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+    public static boolean esta = false;
+
+    public static List<Usuario> listaUsuario = new ArrayList<Usuario>();
 
     public Usuario(String email, String pass)
     {
-        this.email = email;
-        this.contraseña = pass;
+        this.setEmail(email);
+        this.setContraseña(pass);
     }
     public Usuario(String nombre,String apellido,String contraseña,String dni,String email)
     {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.contraseña = contraseña;
-        this.email = email;
-        this.DNI = dni;
+        this.setApellido(apellido);
+        this.setNombre(nombre);
+        this.setContraseña(contraseña);
+        this.setEmail(email);
+        this.setDNI(dni);
     }
+
+    public static void setListaUsuario(ArrayList<Usuario> listaUsuario) {
+        Usuario.listaUsuario = listaUsuario;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -69,16 +82,7 @@ public class Usuario
         this.email = email;
     }
 
-    public static void cargarUsuarios()
-    {
-        listaUsuario.add(new Usuario("user1","test","user1","123456","user1@hotmail.com"));
-        listaUsuario.add(new Usuario("user2","test","user1","123456","user2@hotmail.com"));
-        listaUsuario.add(new Usuario("user3","test","user1","123456","user3@hotmail.com"));
-        listaUsuario.add(new Usuario("user4","test","user1","123456","user4@hotmail.com"));
-        listaUsuario.add(new Usuario("user5","test","user1","123456","user5@hotmail.com"));
-    }
-    public static boolean verificarDuplicado(String email,String dni)
-    {
+    public static boolean verificarDuplicado(String email,String dni) {
         for (Usuario user : listaUsuario)
         {
             if(user.getEmail().equals(email) || user.getDNI().equals(dni))
@@ -87,13 +91,11 @@ public class Usuario
         return false;
     }
 
-    public static boolean verificarUsuario(String email,String pass)
-    {
-        for (Usuario user : listaUsuario)
-        {
-            if(user.getEmail().equals(email) && user.getContraseña().equals(pass))
-                return true;
-        }
-        return false;
+    public static boolean verificarUsuario(String email,String pass) {
+
+        ThreadConexion threadConexion = new ThreadConexion();
+        Hilo hilo = new Hilo(threadConexion, HttpConnection.pathUrl+"/usuarios/"+email+"/"+pass,2);
+        hilo.run();
+        return esta;
     }
 }

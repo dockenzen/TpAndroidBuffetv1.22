@@ -59,7 +59,6 @@ public class MyViewHolderPedido extends RecyclerView.ViewHolder  implements View
             Boolean esta = MenuActivity.pedido.getLista().contains(o);
             if(esta && MenuActivity.pedido.getLista().get(MenuActivity.pedido.getLista().indexOf(o)).getCantidad() == 1)
             {
-
                 MenuActivity.pedido.setTotal(MenuActivity.pedido.getTotal()-o.getPrecio());
                 MenuActivity.pedido.getLista().remove(o);
             }

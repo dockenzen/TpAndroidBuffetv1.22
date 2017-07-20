@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
 import com.example.user.tpandroidbuffetv12.R;
+import com.example.user.tpandroidbuffetv12.controller.LoginController;
 import com.example.user.tpandroidbuffetv12.controller.MenuController;
 import com.example.user.tpandroidbuffetv12.model.Dialogo;
 import com.example.user.tpandroidbuffetv12.model.Pedido;
@@ -46,7 +48,8 @@ public class MenuActivity extends AppCompatActivity
 
         ArrayList<Producto> lista = Producto.getStaticListMenus();
 
-        // VistaPedidoEnCurso v = new VistaPedidoEnCurso(this);
+        //ThreadConexion threadConexion = new ThreadConexion()
+        //Hilo hilo = new Hilo(new ThreadConexion(),,);
 
     }
 
@@ -68,11 +71,11 @@ public class MenuActivity extends AppCompatActivity
             Log.d("Click", "Opcion del menu " + item.getTitle());
         }
         if(titulo.equals("Menus") ) {
-                mc.cambiarProductos(Producto.getStaticListMenus());
+            mc.cambiarProductos(Producto.getStaticListMenus());
                 Log.d("Click", "Opcion del menu "+ item.getTitle() );
         }
         if(titulo.equals("Snacks") ) {
-            mc.cambiarProductos(Producto.getStaticListSnacks());
+           mc.cambiarProductos(Producto.getStaticListSnacks());
             Log.d("Click", "Opcion del menu " + item.getTitle());
         }
         if(titulo.equals("Ver Pedido")||titulo.equals("View Order") ) {
@@ -90,7 +93,7 @@ public class MenuActivity extends AppCompatActivity
         }
         if(titulo.equals("Desloguear")|| titulo.equals("Logout")){
                 SharedPreferences share = getSharedPreferences("miConfig",MODE_PRIVATE);
-                String[] array = LoginActivity.getData();
+                String[] array = LoginController.getData();
                 share.edit().putString(array[0],"");
                 share.edit().putString(array[1],"");
                 share.edit().putBoolean(array[2],false);
@@ -99,6 +102,4 @@ public class MenuActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

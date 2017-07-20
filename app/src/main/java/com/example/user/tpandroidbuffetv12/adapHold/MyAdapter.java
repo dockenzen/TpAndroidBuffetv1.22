@@ -11,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.HttpConnection;
+import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,11 +26,18 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    private List<Producto> lista;
+    private List<Producto> lista = new ArrayList<Producto>();
     private MenuActivity acc;
 
-    public MyAdapter(List<Producto> lis,MenuActivity main){this.lista=lis;
-    this.acc = main;}
+    public MyAdapter(MenuActivity main){
+        this.traerProductos();
+        this.acc = main;
+    }
+
+    public MyAdapter(ArrayList<Producto> productos,MenuActivity main){
+        this.lista = productos;
+        this.acc = main;
+    }
 
     //EL INFLATE TRANSFROMA EL XML DEL LAYOUT EN UN OBJETO DE TIPO VIEW
     @Override
@@ -39,18 +49,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     // llena el objeto creado con la info que corresponde
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Producto per = lista.get(position);
-        holder.nombre.setText(per.getNombre());
-        holder.precio.setText(String.format("%.2f",per.getPrecio()));
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+
+        Producto producto = lista.get(position);
+        if(producto.getImagenDescargada() == null) {
+            ThreadConexion threadConexion = new ThreadConexion(producto, this);
+            Thread hilo = new Thread(new Hilo(threadConexion,producto.getUrlImagen(),1));
+            hilo.start();
+            holder.imagen.setImageResource(R.drawable.notfound);
+        }
+        else{
+            holder.imagen.setImageBitmap(producto.getImagenDescargada());
+        }
+        holder.nombre.setText(producto.getNombre());
+        holder.precio.setText(String.format("%.2f",producto.getPrecio()));
         holder.cantidadElementos.setText(String.valueOf(this.calcularItems()));
-/*
-        Handler hand = new Handler(holder);
-        Hilo h1 = new Hilo(hand,per.getUrlImagen());
-        Thread t1 = new Thread(h1);
-        t1.start();
-*/
-        //va aca pero cuando lo recupere holder.imagen.setImageBitmap();
+        //producto.setImagenDescargada();//bitmap o byte[] ?
+
 
         Log.d("MVH","2 ON BIND VIEW HOLDER");
     }
@@ -71,5 +86,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
             acumulador += prod.getCantidad();
         }
         return acumulador;
+    }
+
+    private void traerProductos()
+    {
+        Thread hiloProductos = new Thread(new Hilo(new ThreadConexion(this.lista,this),HttpConnection.pathUrl+"/productos/",3));
+        hiloProductos.start();
+        this.notifyDataSetChanged();
     }
 }

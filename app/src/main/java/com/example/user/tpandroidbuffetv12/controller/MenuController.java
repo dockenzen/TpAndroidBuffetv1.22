@@ -34,7 +34,7 @@ public class MenuController {
         layoutManager = new LinearLayoutManager(context);
         recycler.setLayoutManager(layoutManager);
 
-        adapter = new MyAdapter(Producto.getStaticListMenus(),context);
+        adapter = new MyAdapter(context);
         recycler.setAdapter(adapter);
 
     }

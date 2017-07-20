@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
 import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
@@ -42,11 +43,23 @@ public class MyAdapterPedido extends RecyclerView.Adapter<MyViewHolderPedido>
     // llena el objeto creado con la info que corresponde
     @Override
     public void onBindViewHolder(MyViewHolderPedido holder, int position) {
-        Producto per = lista.get(position);
-        holder.nombre.setText(per.getNombre());
-        holder.precio.setText(String.format("$ %.2f ",per.getPrecio()));
-        holder.txtCantidadProductoPedido.setText(this.acc.getString(R.string.cantidad)+": "+per.getCantidad());
+        Hilo hilo;
+        Producto producto = lista.get(position);
+        ThreadConexion threadConexion = new ThreadConexion(producto,this);
+        if(producto.getImagenDescargada() == null) {
+            hilo = new Hilo(threadConexion,producto.getUrlImagen(),1);
+            producto.setImagenDescargada(producto.getImagenDescargada());//bitmap o byte[] ?
+        }
+        else
+        {
+            hilo = new Hilo(threadConexion,producto.getUrlImagen(),3);
+        }
+        hilo.run();
+        holder.nombre.setText(producto.getNombre());
+        holder.precio.setText(String.format("$ %.2f ",producto.getPrecio()));
+        holder.txtCantidadProductoPedido.setText(this.acc.getString(R.string.cantidad)+": "+producto.getCantidad());
         holder.importeEstimado.setText(String.format("$ %.2f ",MenuActivity.pedido.getTotal()));
+        holder.imagen.setImageBitmap(producto.getImagenDescargada());
         Log.d("MVH","2 ON BIND VIEW HOLDER");
     }
 

@@ -1,5 +1,7 @@
 package com.example.user.tpandroidbuffetv12.model;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 /**
@@ -9,30 +11,31 @@ import java.util.ArrayList;
 public class Producto {
     private Integer id;
     private String nombre;
+    private String tipoMenu;
     private Double precio;
     private Integer cantidad;
+
     private String urlImagen;
-    private byte[] imagenDescargada;
+    private Bitmap imagenDescargada;
 
     private static ArrayList<Producto> listaMenu;
     private static ArrayList<Producto> listaBebidas;
     private static ArrayList<Producto> listaSnacks;
 
 
-    public Producto(){
+    public Producto(){ }
+
+    public Producto(String name, String tipoMenu, Double price, String imagen){
+        this.setNombre(name);
+        this.setPrecio(price);
+        this.tipoMenu = tipoMenu;
+        this.urlImagen = imagen;
 
     }
 
     public Producto(String name, Double price){
         this.setNombre(name);
         this.setPrecio(price);
-
-    }
-
-    public Producto(String name, Double price, Integer cantidad){
-        this.setNombre(name);
-        this.setPrecio(price);
-        this.cantidad = cantidad;
     }
 
     public Producto(String name, Double price, Integer cantidad,String url){
@@ -71,24 +74,15 @@ public class Producto {
         if(listaMenu == null)
         {
             listaMenu = new ArrayList<Producto>();
-            listaMenu.add(new Producto("Pizza", 15.50,1,"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg"));
-            listaMenu.add(new Producto("Tostados",25.0,1,""));
-            listaMenu.add(new Producto("Frutas",30.0,1,""));
-            listaMenu.add(new Producto("Empanadas",15.0,1,"http://planetaempanada.com/pe/wp-content/uploads/2014/08/Empanadas-planeta.png"));
-            listaMenu.add(new Producto("Hamburguesa",45.0,1,""));
         }
         return listaMenu;
     }
+
     public static ArrayList<Producto> getStaticListBebidas()
     {
         if(listaBebidas == null)
         {
             listaBebidas = new ArrayList<Producto>();
-            listaBebidas.add(new Producto("Coca Cola", 15.50,1));
-            listaBebidas.add(new Producto("Sprite",25.0,1));
-            listaBebidas.add(new Producto("Agua Mineral",30.0,1));
-            listaBebidas.add(new Producto("Pepsi",15.0,1));
-            listaBebidas.add(new Producto("Gatorei",45.0,1));
         }
         return listaBebidas;
     }
@@ -97,11 +91,6 @@ public class Producto {
         if(listaSnacks == null)
         {
             listaSnacks = new ArrayList<Producto>();
-            listaSnacks.add(new Producto("Lays", 15.50,1));
-            listaSnacks.add(new Producto("Saladix",25.0,1));
-            listaSnacks.add(new Producto("Cheetos",30.0,1 ));
-            listaSnacks.add(new Producto("3D",15.0,1));
-            listaSnacks.add(new Producto("Doritos",45.0,1));
         }
         return listaSnacks;
     }
@@ -143,11 +132,11 @@ public class Producto {
         this.urlImagen = urlImagen;
     }
 
-    public byte[] getImagenDescargada() {
+    public Bitmap getImagenDescargada() {
         return imagenDescargada;
     }
 
-    public void setImagenDescargada(byte[] imagenDescargada) {
+    public void setImagenDescargada(Bitmap imagenDescargada) {
         this.imagenDescargada = imagenDescargada;
     }
 }
