@@ -7,6 +7,9 @@ import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
+import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
+import com.example.user.tpandroidbuffetv12.activity.RegisterActivity;
 import com.example.user.tpandroidbuffetv12.adapHold.MyAdapter;
 import com.example.user.tpandroidbuffetv12.model.Producto;
 import com.example.user.tpandroidbuffetv12.model.Usuario;
@@ -23,8 +26,12 @@ public class ThreadConexion implements Handler.Callback {
     Bitmap bitmap;
     RecyclerView.Adapter a;
     List<Producto> lista;
+    Usuario user;
 
     public ThreadConexion() {
+    }
+    public ThreadConexion(Usuario user) {
+        this.user = user;
     }
     public ThreadConexion(Producto prod, RecyclerView.Adapter adapter) {
         this.producto = prod;
@@ -37,7 +44,6 @@ public class ThreadConexion implements Handler.Callback {
 
     @Override
     public boolean handleMessage(Message msg) {
-
         //tiene que ser algo que este definido dentro del thread de la grafica ese algo
         //que reciba los mensajes
         //identificador para relacionar ocn algo.
@@ -53,14 +59,12 @@ public class ThreadConexion implements Handler.Callback {
                 break;
             case 2:
                 try{
-                    Log.d("este",(String) msg.obj);
                     String json = httpConnection.getStringDataByGET(msg.obj.toString());
-                //le llega la url mail+pass
                     Log.d("USUARIOS", json);
-                Usuario.esta = jsonParse.validarUsuario(json);
+                    Usuario.esta = jsonParse.validarUsuario(json);
                 }
                 catch (Exception e) {
-                    Log.d("USUARIOS", e.toString());
+                    Log.d("CASE2", e.toString());
                 }
                 break;
             case 3:
@@ -70,8 +74,30 @@ public class ThreadConexion implements Handler.Callback {
                     Log.d("PRODUCTOS",Producto.getStaticListBebidas().toString());
                 }
                 catch (Exception e){
-                    Log.d("PRODUCTOS",e.toString());
+                    Log.d("CASE3",e.toString());
                 }
+                break;
+            case 4:
+                try {
+                String pedidoJson = jsonParse.toJsonPedido(MenuActivity.pedido);
+                httpConnection.getBytesDataByPOST(msg.obj.toString(),pedidoJson);
+                Producto.limpiarCantidades();
+                MenuActivity.pedido.getLista().clear();
+                }
+                catch (Exception e){
+                    Log.d("CASE4",e.toString());
+                }
+                break;
+            case 6:
+                //get data user for email
+                try {
+                    String jsonUser = httpConnection.getStringDataByGET(msg.obj.toString());
+                    jsonParse.getUserFromEmail(jsonUser);
+                }
+                catch (Exception e){
+                    Log.d("CASE5",e.toString());
+                }
+                break;
         }
         return true;
     }

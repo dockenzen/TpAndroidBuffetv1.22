@@ -8,6 +8,9 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.HttpConnection;
+import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
 import com.example.user.tpandroidbuffetv12.R;
 import com.example.user.tpandroidbuffetv12.activity.MenuActivity;
 import com.example.user.tpandroidbuffetv12.activity.PedidoActivity;
@@ -44,8 +47,9 @@ public class PedidoController implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        MenuActivity.pedido.getLista().clear();
-        this.limpiarCantidades();
+        ThreadConexion threadConexion = new ThreadConexion();
+        Thread hilo = new Thread(new Hilo(threadConexion, HttpConnection.pathUrl+"/pedidos/nuevo",4));
+        hilo.start();
         this.contexto.finish();
     }
 
@@ -54,17 +58,5 @@ public class PedidoController implements DialogInterface.OnClickListener {
         adapter.notifyDataSetChanged();
     }
 
-    private void limpiarCantidades()
-    {
-        List<Producto> superLista = new ArrayList<Producto>();
-        superLista.addAll(Producto.getStaticListBebidas());
-        superLista.addAll(Producto.getStaticListMenus());
-        superLista.addAll(Producto.getStaticListSnacks());
-
-        for (Producto prod: superLista) {
-
-            prod.reiniciarCantidad();
-        }
-    }
 }
 

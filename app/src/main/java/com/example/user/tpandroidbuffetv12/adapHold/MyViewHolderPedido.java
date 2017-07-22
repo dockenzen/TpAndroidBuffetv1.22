@@ -35,24 +35,24 @@ public class MyViewHolderPedido extends RecyclerView.ViewHolder  implements View
     TextView txtCantidadProductoPedido;
 
     public MyViewHolderPedido(View itemView, PedidoActivity context) {
-        super(itemView);
-        this.v = itemView;
-        this.pedidoActivity = context;
-        this.txtCantidadProductoPedido = (TextView) this.v.findViewById(R.id.txtCantidadProductoPedido);
-        this.txtProdPedidos = (TextView) this.v.findViewById(R.id.txtCantidadProductoPedido);
-        this.imagen = (ImageView) this.v.findViewById(R.id.imageView2);
-        this.precio = (TextView) this.v.findViewById(R.id.txtPrecioProductoPedido);
-        this.nombre = (TextView) this.v.findViewById(R.id.txtNombreProductoPedido);
-        this.importeEstimado = (EditText) this.pedidoActivity.findViewById(R.id.editTxtPrecioEstimadoPedido);
-        this.boton = (FloatingActionButton) this.v.findViewById(R.id.deleteProd);
-        this.enviarPedido = (Button) this.pedidoActivity.findViewById(R.id.terminarPedidoBtn);
-        this.boton.setOnClickListener(this);
-        this.enviarPedido.setOnClickListener(this);
+            super(itemView);
+            this.v = itemView;
+            this.pedidoActivity = context;
+            this.txtCantidadProductoPedido = (TextView) this.v.findViewById(R.id.txtCantidadProductoPedido);
+            this.txtProdPedidos = (TextView) this.v.findViewById(R.id.txtCantidadProductoPedido);
+            this.imagen = (ImageView) this.v.findViewById(R.id.imageView2);
+            this.precio = (TextView) this.v.findViewById(R.id.txtPrecioProductoPedido);
+            this.nombre = (TextView) this.v.findViewById(R.id.txtNombreProductoPedido);
+            this.importeEstimado = (EditText) this.pedidoActivity.findViewById(R.id.editTxtPrecioEstimadoPedido);
+            this.boton = (FloatingActionButton) this.v.findViewById(R.id.deleteProd);
+            this.enviarPedido = (Button) this.pedidoActivity.findViewById(R.id.terminarPedidoBtn);
+            this.boton.setOnClickListener(this);
+            this.enviarPedido.setOnClickListener(this);
 
-    }
+        }
 
-    @Override
-    public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
 
 
         if(v.getId()== this.boton.getId())

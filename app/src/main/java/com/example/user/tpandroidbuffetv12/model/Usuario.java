@@ -19,6 +19,7 @@ public class Usuario
     private String contraseña;
     private String DNI;
     private String email;
+    public static Usuario user;
     public static boolean esta = false;
 
     public static List<Usuario> listaUsuario = new ArrayList<Usuario>();
@@ -92,7 +93,6 @@ public class Usuario
     }
 
     public static boolean verificarUsuario(String email,String pass) {
-
         ThreadConexion threadConexion = new ThreadConexion();
         Hilo hilo = new Hilo(threadConexion, HttpConnection.pathUrl+"/usuarios/"+email+"/"+pass,2);
         hilo.run();

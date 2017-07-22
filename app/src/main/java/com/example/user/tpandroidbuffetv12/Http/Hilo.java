@@ -20,6 +20,7 @@ public class Hilo implements  Runnable{
         this.bandera = flag;
     }
 
+
     /**
      * Handler cmunicacion entre dos hilos
      */

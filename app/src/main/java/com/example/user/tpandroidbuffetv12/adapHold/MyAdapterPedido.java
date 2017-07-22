@@ -43,7 +43,6 @@ public class MyAdapterPedido extends RecyclerView.Adapter<MyViewHolderPedido>
     // llena el objeto creado con la info que corresponde
     @Override
     public void onBindViewHolder(MyViewHolderPedido holder, int position) {
-        Hilo hilo;
         Producto producto = lista.get(position);
         holder.nombre.setText(producto.getNombre());
         holder.precio.setText(String.format("$ %.2f ",producto.getPrecio()));

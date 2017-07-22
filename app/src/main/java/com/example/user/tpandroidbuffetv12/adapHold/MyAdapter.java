@@ -58,15 +58,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
             hilo.start();
             holder.imagen.setImageResource(R.drawable.notfound);
         }
-        else{
-            holder.imagen.setImageBitmap(producto.getImagenDescargada());
-        }
+        else { holder.imagen.setImageBitmap(producto.getImagenDescargada()); }
         holder.nombre.setText(producto.getNombre());
         holder.precio.setText(String.format("%.2f",producto.getPrecio()));
         holder.cantidadElementos.setText(String.valueOf(this.calcularItems()));
-        //producto.setImagenDescargada();//bitmap o byte[] ?
-
-
         Log.d("MVH","2 ON BIND VIEW HOLDER");
     }
 

@@ -1,5 +1,9 @@
 package com.example.user.tpandroidbuffetv12.model;
 
+import android.util.Log;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -31,11 +35,10 @@ public class Pedido {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (Producto prod: this.lista)
-        {
-            str.append(prod.getNombre()+"\t\t\t"+prod.getCantidad()+"\n");
+        for (Producto prod : this.lista) {
+            str.append(prod.getNombre() + "\t\t\t" + prod.getCantidad() + "\n");
         }
-            str.append("\n\n\n"+"Total:   "+this.getTotal());
+        str.append("\n\n\n" + "Total:   " + this.getTotal());
 
         return str.toString();
     }

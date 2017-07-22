@@ -46,11 +46,6 @@ public class MenuActivity extends AppCompatActivity
         pedido = new Pedido();
         mc = new MenuController(this);
 
-        ArrayList<Producto> lista = Producto.getStaticListMenus();
-
-        //ThreadConexion threadConexion = new ThreadConexion()
-        //Hilo hilo = new Hilo(new ThreadConexion(),,);
-
     }
 
     @Override
@@ -92,13 +87,16 @@ public class MenuActivity extends AppCompatActivity
             }
         }
         if(titulo.equals("Desloguear")|| titulo.equals("Logout")){
-                SharedPreferences share = getSharedPreferences("miConfig",MODE_PRIVATE);
-                String[] array = LoginController.getData();
-                share.edit().putString(array[0],"");
-                share.edit().putString(array[1],"");
-                share.edit().putBoolean(array[2],false);
-                share.edit().apply();
-                finish();
+            SharedPreferences share = getSharedPreferences("miConfig",MODE_PRIVATE);
+            String[] array = LoginController.getData();
+            SharedPreferences.Editor e  = share.edit();
+            e.putString(array[0],"");
+            e.putString(array[1],"");
+            e.putBoolean(array[2],false);
+            e.commit();
+            Producto.limpiarCantidades();
+            MenuActivity.pedido.getLista().clear();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

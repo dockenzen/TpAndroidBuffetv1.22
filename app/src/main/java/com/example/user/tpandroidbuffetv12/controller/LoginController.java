@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.user.tpandroidbuffetv12.Http.Hilo;
+import com.example.user.tpandroidbuffetv12.Http.HttpConnection;
 import com.example.user.tpandroidbuffetv12.Http.JsonParse;
 import com.example.user.tpandroidbuffetv12.Http.ThreadConexion;
 import com.example.user.tpandroidbuffetv12.R;
@@ -42,15 +43,7 @@ public class LoginController implements View.OnClickListener
     public LoginController(LoginActivity loginActivity){
 
         this.loginActivity = loginActivity;
-
         share = this.loginActivity.getSharedPreferences("miConfig",Context.MODE_PRIVATE);
-
-        if(validarRecordado(share))
-        {
-            Intent intento = new Intent(this.loginActivity.getApplicationContext(), MenuActivity.class);
-            this.loginActivity.startActivity(intento);
-        }
-
 
         loguear = (Button) this.loginActivity.findViewById(R.id.ingresar);
         registrar = (Button) this.loginActivity.findViewById(R.id.registrar);
@@ -60,9 +53,13 @@ public class LoginController implements View.OnClickListener
         loguear.setOnClickListener(this);
         registrar.setOnClickListener(this);
 
-        email.setText(share.getString(USER,"a@a.com"));
-        pass.setText(share.getString(PASS,"clave"));
-        remember.setSelected(share.getBoolean(RECORDAR,false));
+        if(validarRecordado(share)){
+            email.setText(share.getString(USER,"a@a.com"));
+            pass.setText(share.getString(PASS,"clave"));
+            remember.setSelected(share.getBoolean(RECORDAR,false));
+            Intent intento = new Intent(this.loginActivity.getApplicationContext(), MenuActivity.class);
+            this.loginActivity.startActivity(intento);
+        }
 
     }
 
@@ -91,7 +88,8 @@ public class LoginController implements View.OnClickListener
                         e.commit();
                         Log.d("spa", "pase x aca");
                     }
-                    Log.d("aca llege", "eaea");
+                    loadUserFromDB();
+                    Log.d("aca", "eaea");
                     intento = new Intent(this.loginActivity.getApplicationContext(), MenuActivity.class);
                     this.loginActivity.startActivity(intento);
                 }
@@ -120,10 +118,14 @@ public class LoginController implements View.OnClickListener
     }
 
     private boolean validarRecordado(SharedPreferences sharedPreferences){
-
-        if (share.getBoolean(RECORDAR,false))
-            return true;
-        else
-            return false;
+        return share.getBoolean(RECORDAR,false);
     }
+
+    private void loadUserFromDB()
+    {
+        ThreadConexion threadConexion = new ThreadConexion();
+        Hilo hilo = new Hilo(threadConexion, HttpConnection.pathUrl+"/usuarios/"+email.getText().toString(),6);
+        hilo.run();
+    }
+
 }
