@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    private List<Producto> lista = new ArrayList<Producto>();
+    public List<Producto> lista = new ArrayList<Producto>();
     private MenuActivity acc;
 
     public MyAdapter(MenuActivity main){
@@ -49,14 +49,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     // llena el objeto creado con la info que corresponde
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-
-        Producto producto = lista.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        //Los declaro final para poder usarlos dentro de la clase
+        final Producto producto = lista.get(position);
         if(producto.getImagenDescargada() == null) {
             ThreadConexion threadConexion = new ThreadConexion(producto, this);
             Thread hilo = new Thread(new Hilo(threadConexion,producto.getUrlImagen(),1));
             hilo.start();
-            holder.imagen.setImageResource(R.drawable.notfound);
+            //Lanzo una clase anonima dentro para esperar un poco a que se termine de descargar la imagen
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    holder.imagen.setImageBitmap(producto.getImagenDescargada());
+                    //Actualizo aca los datos porque dentro del onbind
+                    //lanza una excepcion porque se esta cargando todavia la informacion.
+                    notifyDataSetChanged();
+                }
+            },50);
+
+            //holder.imagen.setImageResource(R.drawable.notfound);
         }
         else { holder.imagen.setImageBitmap(producto.getImagenDescargada()); }
         holder.nombre.setText(producto.getNombre());

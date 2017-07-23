@@ -55,7 +55,6 @@ public class ThreadConexion implements Handler.Callback {
                 byte[] bytes = httpConnection.getBytesDataByGET(msg.obj.toString());
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 producto.setImagenDescargada(bitmap);
-              // no funciona acá  a.notifyItemChanged(producto.getId());
                 break;
             case 2:
                 try{
@@ -71,6 +70,8 @@ public class ThreadConexion implements Handler.Callback {
                 try {
                     String json = httpConnection.getStringDataByGET(msg.obj.toString());
                     jsonParse.listaProductos(json);
+                    this.lista.addAll(Producto.getStaticListMenus());
+                    this.a.notifyDataSetChanged();
                     Log.d("PRODUCTOS",Producto.getStaticListBebidas().toString());
                 }
                 catch (Exception e){
